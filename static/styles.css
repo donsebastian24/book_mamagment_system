@@ -1,0 +1,54 @@
+body {
+    background-image: url('/static/images/library.jpg'); /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-attachment: fixed; /* Fixed background */
+    color: white; /* Change text color for readability */
+    min-height: 100vh;
+}
+
+/* Navigation Bar Styling */
+.navbar-custom {
+    background-color: #343a40; /* Dark color for navbar */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #ffffff !important; /* White text color for links and brand */
+}
+
+/* Footer Styling */
+footer {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark footer background */
+    color: white; /* Footer text color */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px; /* Slightly larger text */
+    /* Add a top border for style */
+}
+
+/* Card Styling */
+.card {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent card background */
+    border: none; /* Remove default border */
+}
+
+.card-title {
+    color: white;
+}
+
+/* Search Form Button */
+.form-inline button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.form-inline button:hover {
+    background-color: #0056b3;
+    color: white;
+}

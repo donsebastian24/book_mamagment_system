@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .table-custom {
+        color: white; /* Set text color to white */
+        background-color: #343a40; /* Dark background for contrast */
+    }
+    .table-custom th {
+        background-color: #495057; /* Darker background for the header */
+    }
+</style>
+
+<div class="container mt-4">
+    <h1 class="text-white">Books List</h1>
+    <table class="table table-custom"> <!-- Add the custom class here -->
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Publication Date</th>
+                <th>ISBN</th>
+                <th>Category</th> <!-- New Category Column -->
+            </tr>
+        </thead>
+        <tbody>
+            {% if books %}
+                {% for book in books %}
+                <tr>
+
+                    <td>{{ book[1] }}</td>
+                    <td>{{ book[2] }}</td>
+                    <td>{{ book[3] }}</td>
+                    <td>{{ book[4] }}</td>
+                    <td>{{ book[5] }}</td>
+                    <td>{{ book[6] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">No books found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

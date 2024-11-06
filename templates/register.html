@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link to your custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .register-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: black;
+        }
+        .register-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white; /* Text color for better visibility */
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: white; /* Text color for better visibility */
+        }
+    </style>
+</head>
+<body>
+<div class="register-container mt-5">
+    <h2 class="register-header">Register</h2>
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <label for="username">Email address</label>
+            <input type="email" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <a href="/login" class="footer-link">Already have an account? Login here</a>
+</div>
+</body>
+</html>

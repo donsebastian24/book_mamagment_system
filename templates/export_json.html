@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        body {
+            background-image: url('/static/images/library.jpg'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-attachment: fixed; /* Fixed background */
+            color: white; /* Change text color for readability */
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent footer */
+            color: white; /* Footer text color */
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background for content */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .black-label {
+        color: black;
+    }
+    </style>
+
+    <script>
+        function toggleInput(filter) {
+            // Hide all inputs first
+            document.querySelectorAll('.filter-input').forEach(input => input.style.display = 'none');
+
+            // Show the selected input based on the dropdown value
+            const selectedInput = document.getElementById(filter);
+            if (selectedInput) {
+                selectedInput.style.display = 'block';
+            }
+        }
+
+        function validateForm() {
+            const filterType = document.getElementById('filterType').value;
+            if (filterType === 'year') {
+                const yearInput = document.getElementById('yearInput').value;
+                if (!yearInput) {
+                    alert("Please enter a year.");
+                    return false; // Prevent form submission
+                }
+            } else if (filterType === 'author') {
+                const authorInput = document.getElementById('authorInput').value;
+                if (!authorInput) {
+                    alert("Please enter an author name.");
+                    return false; // Prevent form submission
+                }
+            } else if (filterType === 'genre') {
+                const genreInput = document.getElementById('genreInput').value;
+                if (!genreInput) {
+                    alert("Please enter a genre.");
+                    return false; // Prevent form submission
+                }
+            }
+            // Add checks for other filters as needed
+
+            return true; // Allow form submission
+        }
+    </script>
+
+
+
+
+<!-- Header Section -->
+<header class="bg-info text-white text-center p-5">
+    <h1>Export Books</h1>
+    <p>Select your filters for export</p>
+</header>
+
+<!-- Main Content -->
+<div class="container mt-4">
+    <!-- Standard Export Form -->
+    <form id="exportForm" method="GET" action="/export_json" onsubmit="return validateForm();">
+        <!-- Filter Dropdown -->
+        <div class="form-group">
+            <label for="filterType" class="black-label">Choose a filter</label>
+            <select id="filterType" class="form-control" onchange="toggleInput(this.value)" required>
+                <option value="">Select a filter</option>
+                <option value="year">Year of Publication</option>
+                <option value="author">Author</option>
+                <option value="genre">Genre</option>
+                <option value="book_type">Type of Book</option>
+            </select>
+        </div>
+
+        <!-- Year Input -->
+        <div class="form-group filter-input" id="year" style="display: none;">
+            <label for="yearInput">Enter Year</label>
+            <input type="text" id="yearInput" name="year" class="form-control" placeholder="Enter year">
+        </div>
+
+        <!-- Author Input -->
+        <div class="form-group filter-input" id="author" style="display: none;">
+            <label for="authorInput">Enter Author Name</label>
+            <input type="text" id="authorInput" name="author" class="form-control" placeholder="Enter author name">
+        </div>
+
+        <!-- Genre Input -->
+        <div class="form-group filter-input" id="genre" style="display: none;">
+            <label for="genreInput">Enter Genre</label>
+            <input type="text" id="genreInput" name="genre" class="form-control" placeholder="Enter genre">
+        </div>
+
+        <!-- Book Type Input -->
+        <div class="form-group filter-input" id="book_type" style="display: none;">
+            <label for="bookType">Select Book Type</label>
+            <select id="bookType" name="category" class="form-control">
+                <option value="Books">Books</option>
+                <option value="Audio-Books">Audio-Books</option>
+                <option value="E-Books">E-Books</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" name="export_type" value="json" class="btn btn-primary"><i class="fas fa-file-export"></i> Export with Filters</button>
+        </div>
+    </form>
+
+    <!-- Bulk Export Form -->
+    <form id="bulkExportForm" method="GET" action="/export_json">
+        <input type="hidden" name="bulk_export" value="true">
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-file-export"></i> Bulk Export JSON
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- Scripts for Bootstrap and Font Awesome -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}
